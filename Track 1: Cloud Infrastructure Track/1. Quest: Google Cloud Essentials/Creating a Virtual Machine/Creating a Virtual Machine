@@ -1,0 +1,53 @@
+// Activate Cloud Shell
+gcloud config set project <gcp-project-id>
+
+gcloud auth list
+gcloud config set account <username>
+
+gcloud config list project
+
+// TASK 1: CREATE A NEW INSTANCE FROM THE CLOUD CONSOLE
+
+Navigation Menu -> Compute Engine -> VM Instances
+Create Instance
+
+Name ->	gcelab
+Region ->	us-central1 (lowa)	
+Zone ->	us-central1-f
+Series -> N1
+Machine -> Type	2 vCPU
+Boot Disk ->	New 10 GB balanced persistent disk OS Image: Debian GNU/Linux 10 (buster)
+Firewall ->	Allow HTTP traffic
+
+Create
+
+Launch SSH
+
+// TASK 2: INSTALL AN NGINX WEB SERVER
+
+sudo su -
+apt-get update
+apt-get install nginx -y
+ps auwx | grep nginx
+
+// TASK 3: CREATE A NEW INSTANCE WITH GCLOUD
+
+gcloud compute instances create gcelab2 --machine-type n1-standard-2 --zone us-central1-f
+
+gcloud compute instances create --help
+
+TO EXIT -> CTRL + C
+
+Navigation Menu -> Compute Engine -> VM Instances
+Tere will be 2 instances listed.
+
+gcloud compute ssh gcelab2 --zone us-central1-f
+
+// Do you want to continue? (Y/n)
+Type Y to continue
+
+// Generating public/private rsa key pair.
+// Enter passphrase (empty for no passphrase)
+Press ENTER through the passphrase section to leave the passphrase empty.
+
+exit
