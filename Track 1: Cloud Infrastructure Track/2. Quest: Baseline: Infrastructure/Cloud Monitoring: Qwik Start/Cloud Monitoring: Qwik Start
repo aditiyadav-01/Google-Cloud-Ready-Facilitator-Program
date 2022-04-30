@@ -1,0 +1,99 @@
+// Create a Compute Engine instance
+
+Navigation menu -> Compute Engine -> VM instances
+Create Instance
+
+Name -> lamp-1-vm
+Region ->	us-central1 (Iowa)
+Zone -> us-central1-a
+Series ->	N1
+Machine -> type	n1-standard-2
+Firewall ->	check Allow HTTP traffic
+
+Create
+
+
+// Add Apache2 HTTP Server to your instance
+
+Open SSH
+
+sudo apt-get update
+sudo apt-get install apache2 php7.0
+sudo service apache2 restart
+
+Return to VM Instances page
+Open External IP of lamp-1-vm
+
+
+// Install agents on the VM:
+
+curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
+sudo bash add-monitoring-agent-repo.sh
+
+sudo apt-get update
+
+sudo apt-get install stackdriver-agent
+
+curl -sSO https://dl.google.com/cloudagents/add-logging-agent-repo.sh
+sudo bash add-logging-agent-repo.sh
+
+sudo apt-get update
+
+sudo apt-get install google-fluentd
+
+
+// Create an uptime check
+
+Navigation menu -> Monitoring -> Uptime Checks
+
+Create Uptime Check
+
+Title -> Lamp Uptime Check, then click Next.
+Protocol -> HTTP
+Resource Type -> Instance
+Applies to -> Single, lamp-1-vm
+Path -> leave at default
+Check Frequency -> 1 min
+
+
+Next
+
+Leave other details to default
+Test
+When you see a green check mark
+CREATE
+
+In the left menu -> click on alerting
+Create Policy
+
+Click on Select a metric dropdown
+Disable the Show only active resources & metrics
+Click on VM instance > interface
+Select Network traffic
+
+Apply
+
+Next
+
+Set the Threshold position to Above threshold
+Threshold value to 500 
+Advanced Options > Retest window to 1 min
+
+Next
+
+Click on drop down arrow next to Notification Channels
+Click on Manage Notification Channels
+
+A Notification channels page will open in new tab
+click on ADD NEW for Email
+In Create Email Channel dialog box, enter your personal email address in the Email Address field and a Display name.
+Save
+
+Go back to previous tab
+Click on Notification Channels again
+Click on refresh icon to get the display name you mentioned in the previous step
+Select your name
+Click Ok
+
+Alert Name -> Inbound Traffic Alert
+Create Policy
