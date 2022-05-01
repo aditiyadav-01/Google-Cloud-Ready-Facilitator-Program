@@ -1,1 +1,36 @@
-//
+// Task 1: Sign in to Google Cloud
+
+In the left pannel -> click on Open Google Console
+
+Email/Phone -> <Username>
+Next
+
+Password -> <Password>
+Next
+
+Accept
+
+Protect your account -> Click confirm
+
+Terms of services -> Agree and Continue
+
+// Task 2: View all projects
+
+In the Google Cloud Console title bar
+click on the drop down menu next to your project name
+Select a project dialog -> Click All
+
+// Task 3: View your roles and permissions
+
+Navigation menu -> IAM & Admin
+The Member column displays googlexxxxxx_student@qwiklabs.net (which matches the username you signed in with). 
+The Name column displays googlexxxxxx_student@qwiklabs.net student. 
+The Role column displays Editor, which is one of three basic roles offered by Google Cloud. 
+Basic roles set project-level permissions and, unless otherwise specified, control access and management to all Google Cloud services.
+
+// Task 4: View available APIs
+
+Navigation menu -> APIs & Services -> Library
+In the search bar -> Type Dialogflow
+click on Dialogflow API
+Click on Enable
